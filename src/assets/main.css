@@ -1,0 +1,12 @@
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+}
+
+.v-application {
+  background-color: #edeff3 !important;
+}
+
+a {
+  text-decoration: none;
+}
