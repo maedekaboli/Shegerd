@@ -36,7 +36,6 @@ const onSubmit = (values) => {
 </script>
 
 <template>
-    {{ image }}
     <Form as="v-form" :validation-schema="schema" @submit="onSubmit">
         <v-card class="pb-5">
             <v-progress-linear color="#6200ee" indeterminate v-if="editLoading"></v-progress-linear>
