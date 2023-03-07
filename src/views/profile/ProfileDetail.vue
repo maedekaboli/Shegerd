@@ -1,6 +1,9 @@
 <script setup>
 import useProfileStore from "../../stores/profile";
 import { storeToRefs } from 'pinia'
+import { defineAsyncComponent } from 'vue'
+
+const ProfileAvatar = defineAsyncComponent(() => import('../../components/ProfileAvatar.vue'))
 const { user, userRegisterDate } = storeToRefs(useProfileStore())
 </script>
 
@@ -8,9 +11,7 @@ const { user, userRegisterDate } = storeToRefs(useProfileStore())
     <v-card class="pb-5">
         <v-row justify="center" align="center" class="pa-5">
             <v-col cols="md-5" sm="12" class="text-center">
-                <v-avatar size="150" color="black">
-                    <v-img :src="user.imageUrl ? user.imageUrl : '/no-profile.png'" alt="profile image"></v-img>
-                </v-avatar>
+                <ProfileAvatar :imgSrc="user.imageUrl"></ProfileAvatar>
             </v-col>
             <v-col cols="md-7" sm="12">
                 <v-col cols="12"><v-icon class="pr-6">mdi-account-circle-outline</v-icon>First Name: {{ user.name }}</v-col>

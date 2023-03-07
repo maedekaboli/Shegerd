@@ -1,10 +1,11 @@
 <script setup>
 import * as yup from 'yup'
 import { Form, Field } from 'vee-validate'
-import { ref } from 'vue'
+import { ref, defineAsyncComponent } from 'vue'
 import useProfileStore from "../../stores/profile";
 import { storeToRefs } from 'pinia'
 
+const ProfileAvatar = defineAsyncComponent(() => import('../../components/ProfileAvatar.vue'))
 const { user, editLoading, tempUser } = storeToRefs(useProfileStore())
 const { editUser, openModal } = useProfileStore()
 const image = ref(null)
@@ -42,9 +43,7 @@ const onSubmit = (values) => {
             <div class="pa-5">
                 <v-row justify="center">
                     <v-col cols="12" class="text-center">
-                        <v-avatar size="150" color="black" class="mb-5">
-                            <v-img :src="tempUser.imageUrl ? tempUser.imageUrl : '/no-profile.png'" alt="John"></v-img>
-                        </v-avatar>
+                        <ProfileAvatar :imgSrc="tempUser.imageUrl"></ProfileAvatar>
                         <div>
                             <small class="text-grey">Please upload images fewer than 4MG</small>
                             <v-file-input accept="image/*" v-model="image" type="file" class="input" label="Upload Image"
